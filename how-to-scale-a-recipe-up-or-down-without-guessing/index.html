@@ -1,0 +1,159 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Scale a Recipe Up or Down Without Guessing | Home Cooking Basics</title><meta name="description" content="The actual math for resizing a recipe to more or fewer servings, using NIST's official measurement conversions, plus what does not scale linearly."><link rel="canonical" href="https://home-cooking-basics.howlane.com/how-to-scale-a-recipe-up-or-down-without-guessing/">
+<meta property="og:type" content="article"><meta property="og:title" content="How to Scale a Recipe Up or Down Without Guessing | Home Cooking Basics"><meta property="og:description" content="The actual math for resizing a recipe to more or fewer servings, using NIST's official measurement conversions, plus what does not scale linearly."><meta property="og:url" content="https://home-cooking-basics.howlane.com/how-to-scale-a-recipe-up-or-down-without-guessing/"><meta property="og:site_name" content="Home Cooking Basics"><meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#c0392b"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2216%22%20fill%3D%22%23c0392b%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2241%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2226%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%3EHC%3C%2Ftext%3E%3C%2Fsvg%3E"><link rel="alternate" type="application/rss+xml" title="Home Cooking Basics" href="/feed.xml">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4370274902373682" crossorigin="anonymous"></script><style>:root{--accent:#c0392b;--fg:#1f1f1f;--muted:#6b6b6b;--line:#e8e8e8;--bg:#fff;--card:#fff;--soft:#f6f6f4;--serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root{--fg:#ececec;--muted:#a3a3a3;--line:#2c2c2c;--bg:#121212;--card:#181818;--soft:#1c1c1c}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.5}
+a{color:inherit}img,svg{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}.narrow{max-width:700px;margin:0 auto;padding:0 20px}
+header.top{border-bottom:1px solid var(--line);position:sticky;top:0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);z-index:5}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:18px;letter-spacing:-.01em}.brand svg{width:34px;height:34px}
+nav a{text-decoration:none;color:var(--muted);margin-left:22px;font-size:15px}nav a:hover{color:var(--fg)}
+.hero{padding:56px 0 36px;border-bottom:1px solid var(--line)}.hero h1{font-family:var(--serif);font-size:clamp(34px,5vw,54px);line-height:1.1;margin:0 0 12px;letter-spacing:-.02em}
+.hero p{font-size:19px;color:var(--muted);margin:0;max-width:640px}.hero .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--accent);margin-right:8px}
+.feat{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;padding:40px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.feat .cv{border-radius:14px;overflow:hidden;aspect-ratio:16/9}.feat .cv svg{width:100%;height:100%}
+.feat h2{font-family:var(--serif);font-size:32px;line-height:1.2;margin:8px 0 12px;letter-spacing:-.01em}.feat p{color:var(--muted);font-size:17px;margin:0 0 14px}
+.tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+.meta{font-size:14px;color:var(--muted)}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px;padding:36px 0 64px}
+.card{text-decoration:none;display:flex;flex-direction:column;gap:10px}.card .cv{border-radius:12px;overflow:hidden;aspect-ratio:16/9;background:var(--soft)}.card .cv svg{width:100%;height:100%}
+.card h3{font-family:var(--serif);font-size:22px;line-height:1.25;margin:2px 0 0}.card p{margin:0;color:var(--muted);font-size:15px}
+.card:hover h3,.feat:hover h2{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.sec-t{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:36px;margin:0}
+article.post{padding:48px 0 24px}article.post h1{font-family:var(--serif);font-size:clamp(32px,4.6vw,46px);line-height:1.15;letter-spacing:-.02em;margin:10px 0 14px}
+.sub{font-size:21px;color:var(--muted);line-height:1.45;margin:0 0 24px;font-family:var(--serif)}
+.byline{display:flex;align-items:center;gap:12px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:32px}.byline svg{width:42px;height:42px}.byline b{display:block;font-size:15px}
+.pcover{border-radius:14px;overflow:hidden;aspect-ratio:21/9;margin:0 0 36px}.pcover svg{width:100%;height:100%}
+.body{font-family:var(--serif);font-size:20px;line-height:1.72}.body p{margin:0 0 1.25em}.body h2{font-family:var(--sans);font-size:26px;line-height:1.3;margin:1.8em 0 .6em;letter-spacing:-.01em}.body h3{font-family:var(--sans);font-size:21px;margin:1.5em 0 .5em}
+.body ul,.body ol{padding-left:1.3em;margin:0 0 1.25em}.body li{margin:.35em 0}.body a{color:var(--accent);text-underline-offset:3px}
+.body blockquote{margin:1.5em 0;padding:4px 0 4px 20px;border-left:3px solid var(--accent);color:var(--muted);font-style:italic}
+.body table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:16px;line-height:1.45;margin:0 0 1.5em}.body th,.body td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}.body th{font-weight:600;background:var(--soft)}
+.body code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--soft);padding:2px 6px;border-radius:5px}.body pre{background:var(--soft);padding:16px 18px;border-radius:10px;overflow-x:auto;font-size:15px;line-height:1.55}.body pre code{background:none;padding:0}
+.note{font-family:var(--sans);font-size:15px;background:var(--soft);border-radius:12px;padding:16px 18px;color:var(--muted);margin:28px 0}
+.src{font-family:var(--sans);font-size:15px;margin:32px 0 0;padding-top:20px;border-top:1px solid var(--line)}.src h2{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 10px}.src ol{padding-left:1.2em;margin:0}.src li{margin:6px 0;word-break:break-word}.src a{color:var(--accent)}
+.tags{margin:28px 0 0;display:flex;gap:8px;flex-wrap:wrap}.tags span{font-size:14px;background:var(--soft);border-radius:999px;padding:6px 14px}
+.more{border-top:1px solid var(--line);margin-top:48px}
+.page{padding:48px 0 64px}.page h1{font-family:var(--serif);font-size:42px;margin:0 0 20px}.page .body{font-size:19px}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:14px}footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}footer a{color:var(--muted);text-decoration:none;margin-right:16px}
+@media (max-width:760px){.body table{display:block;overflow-x:auto}.body th,.body td{white-space:nowrap}.feat{grid-template-columns:1fr;gap:18px}nav a{margin-left:14px}.body{font-size:18px}.hero{padding:36px 0 24px}}</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Scale a Recipe Up or Down Without Guessing","description":"The actual math for resizing a recipe to more or fewer servings, using NIST's official measurement conversions, plus what does not scale linearly.","datePublished":"2026-10-09","dateModified":"2026-10-09","author":{"@type":"Organization","name":"Home Cooking Basics"},"publisher":{"@type":"Organization","name":"Home Cooking Basics"},"mainEntityOfPage":"https://home-cooking-basics.howlane.com/how-to-scale-a-recipe-up-or-down-without-guessing/","keywords":"home cooking, recipe scaling, measurement conversions"}</script></head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#c0392b"/><text x="32" y="41" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#fff" text-anchor="middle">HC</text></svg><span>Home Cooking Basics</span></a><nav><a href="/">Home</a><a href="/about/">About</a><a href="/feed.xml">RSS</a></nav></div></header>
+<main><article class="post narrow"><span class="tag">home cooking</span><h1>How to Scale a Recipe Up or Down Without Guessing</h1><p class="sub">The actual math for resizing a recipe to more or fewer servings, using NIST's official measurement conversions, plus what does not scale linearly.</p>
+<div class="byline"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#c0392b"/><text x="32" y="41" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#fff" text-anchor="middle">HC</text></svg><div><b>Home Cooking Basics</b><span class="meta">Oct 9, 2026 · 4 min read</span></div></div>
+<div class="pcover"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g3987" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(6 73% 92%)"/><stop offset="1" stop-color="hsl(31 63% 80%)"/></linearGradient></defs><rect width="1200" height="600" fill="url(#g3987)"/><rect x="1140" y="537" width="241" height="151" rx="25" fill="hsl(24 68% 64%)" opacity="0.23" transform="rotate(-3 1140 537)"/><rect x="949" y="557" width="345" height="216" rx="36" fill="hsl(29 68% 54%)" opacity="0.22" transform="rotate(17 949 557)"/><rect x="930" y="48" width="207" height="129" rx="22" fill="hsl(24 68% 61%)" opacity="0.21" transform="rotate(-7 930 48)"/><rect x="970" y="575" width="281" height="176" rx="29" fill="hsl(343 68% 53%)" opacity="0.30" transform="rotate(-10 970 575)"/><rect x="498" y="385" width="368" height="230" rx="38" fill="hsl(17 68% 59%)" opacity="0.18" transform="rotate(-15 498 385)"/><rect x="424" y="207" width="146" height="91" rx="15" fill="hsl(21 68% 54%)" opacity="0.19" transform="rotate(-11 424 207)"/><rect x="540" y="566" width="195" height="122" rx="20" fill="hsl(21 68% 38%)" opacity="0.25" transform="rotate(-6 540 566)"/></svg></div>
+<div class="body"><p>Scaling a recipe up for a crowd or down for a smaller household seems like it should be simple multiplication, and for most ingredients, it is. The part that trips people up is knowing which measurements convert cleanly, which units to actually use for precision, and which parts of a recipe (cooking time, pan size, leavening) refuse to scale in a straight line no matter how carefully you do the arithmetic.</p>
+<h2>Start with a clean scaling factor</h2>
+<p>The first step is figuring out your scaling factor: target servings divided by the recipe&#39;s original servings. If a recipe serves 4 and you need to feed 6, your factor is 6 divided by 4, or 1.5. If you need to feed 10, your factor is 10 divided by 4, or 2.5. If you&#39;re cooking for 3 instead of a full 4-person batch, your factor is 0.75.</p>
+<p>Once you have that factor, every ingredient quantity in the original recipe gets multiplied by it. A recipe calling for 2 cups of flour at the original 4 servings becomes:</p>
+<table>
+<thead>
+<tr>
+<th>Target servings</th>
+<th>Scaling factor</th>
+<th>Flour needed (cups)</th>
+<th>Flour needed (mL)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3</td>
+<td>0.75</td>
+<td>1.50</td>
+<td>360</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1.5</td>
+<td>3.00</td>
+<td>720</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2.5</td>
+<td>5.00</td>
+<td>1200</td>
+</tr>
+</tbody></table>
+<p>That mL column matters more than it looks. Converting to milliliters, using the National Institute of Standards and Technology&#39;s (NIST) official cooking measurement equivalencies, lets you check your scaled total against a kitchen scale or a metric measuring cup, which is more accurate than stacking multiple imprecise cup or tablespoon measurements on top of each other.</p>
+<h2>The official NIST conversions worth memorizing</h2>
+<p>NIST&#39;s Office of Weights and Measures publishes a reference table of approximate equivalents between U.S. customary kitchen measures and metric units, specifically for home cooking use. The core figures, straight from that reference:</p>
+<table>
+<thead>
+<tr>
+<th>US customary</th>
+<th>Metric</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 teaspoon</td>
+<td>5 mL</td>
+</tr>
+<tr>
+<td>1 tablespoon</td>
+<td>15 mL</td>
+</tr>
+<tr>
+<td>1/4 cup</td>
+<td>60 mL</td>
+</tr>
+<tr>
+<td>1/2 cup</td>
+<td>120 mL</td>
+</tr>
+<tr>
+<td>1 cup</td>
+<td>240 mL</td>
+</tr>
+<tr>
+<td>1 pint (2 cups)</td>
+<td>480 mL</td>
+</tr>
+<tr>
+<td>1 quart (4 cups)</td>
+<td>950 mL</td>
+</tr>
+<tr>
+<td>1 ounce (weight)</td>
+<td>28 g</td>
+</tr>
+<tr>
+<td>1 pound (16 oz)</td>
+<td>454 g</td>
+</tr>
+</tbody></table>
+<p>These are the values NIST itself labels as approximate, meant for everyday home cooking rather than laboratory precision, which is exactly the level of accuracy a scaled recipe needs. NIST&#39;s companion publication, SP430, Household Weights and Measures, maintained by the agency&#39;s Office of Weights and Measures, presents the same kind of household-friendly weights and measures tables for general consumer use, confirming that these approximate equivalents are the standard reference NIST itself points to for everyday kitchen conversions, not a simplified version aimed only at beginners.</p>
+<h2>Why scaling by weight beats scaling by volume</h2>
+<p>When you&#39;re scaling a recipe by a factor like 1.5 or 2.5, volume measurements (cups, tablespoons) start accumulating small errors, because each scoop of flour or sugar you measure by volume already carries some variability depending on how packed it is. Multiplying that small inconsistency by 1.5x or 2.5x multiplies the error too.</p>
+<p>Converting to grams using the NIST weight equivalents and then multiplying by your scaling factor avoids compounding that error, because you&#39;re working with one consistent unit instead of stacking multiple cup or spoon measurements. This matters most for baking, where the ratio between flour, fat, and liquid is what determines whether the final texture holds together, and least for something forgiving like a soup or stew, where small ingredient variances barely register in the final dish.</p>
+<h2>What does not scale linearly</h2>
+<p>The ingredient quantities scale cleanly with simple multiplication. Several other things in a recipe do not:</p>
+<ul>
+<li>Cooking and baking time generally does not scale linearly with volume. Doubling a cake batter and pouring it into a single larger pan usually needs a longer bake time than double the original time, because heat has to penetrate a thicker mass; the right approach is to check for doneness using the recipe&#39;s visual or temperature cues, not just a doubled clock time.</li>
+<li>Pan size and shape change how a scaled batter or dough bakes. The same total volume of batter spread thinner in a wider pan bakes faster than that volume poured into a smaller, deeper pan.</li>
+<li>Leavening agents (baking powder, baking soda, yeast) do not always scale in exact proportion, especially at large multiples, because their effect depends partly on surface area and gas distribution within the batter, not purely on total mass.</li>
+<li>Seasoning, particularly salt and strong spices, is often safer to scale at a slightly lower ratio than the main ingredients and adjusted to taste afterward, since perceived saltiness and spice intensity don&#39;t always track a straight multiplication the way bulk ingredients do.</li>
+</ul>
+<h2>A practical scaling workflow</h2>
+<ol>
+<li>Calculate your scaling factor: target servings divided by original servings.</li>
+<li>Convert each core ingredient to grams or milliliters using the NIST equivalents, then multiply by the factor.</li>
+<li>Choose a pan or pot sized for the new total volume, not just a scaled-up version of the original pan.</li>
+<li>Use the recipe&#39;s doneness cues (color, internal temperature, texture) rather than a straight-multiplied cooking time.</li>
+<li>Scale seasoning conservatively and adjust to taste at the end, especially for salt and potent spices.</li>
+</ol>
+<h2>Key takeaways</h2>
+<ul>
+<li>Scaling factor equals target servings divided by original servings; multiply every core ingredient quantity by that factor.</li>
+<li>NIST&#39;s official kitchen conversions (1 cup equals 240 mL, 1 tablespoon equals 15 mL, 1 pound equals 454 g) let you verify a scaled recipe with a scale or metric measuring cup instead of stacking volume measurements.</li>
+<li>Scaling by weight in grams introduces less compounding error than scaling by volume, especially for baking.</li>
+<li>Cooking time, pan size, and leavening agents do not scale in a straight line with ingredient volume; rely on doneness cues rather than a multiplied clock time.</li>
+<li>Scale seasoning like salt and strong spices conservatively, then adjust to taste after cooking.</li>
+</ul>
+<p>Get the math right on the ingredients and treat time, pan size, and seasoning as separate judgment calls, and a scaled recipe comes out tasting like the original instead of just a bigger or smaller version of it.</p>
+</div>
+<section class="src"><h2>Sources</h2><ol><li><a href="https://www.nist.gov/pml/owm/metric-si/metric-kitchen/metric-kitchen-cooking-measurement-equivalencies" rel="noopener" target="_blank">National Institute of Standards and Technology, Metric Kitchen: Cooking Measurement Equivalencies</a></li><li><a href="https://www.nist.gov/publications/nist-sp430-household-weights-and-measures" rel="noopener" target="_blank">National Institute of Standards and Technology, NIST SP430: Household Weights and Measures</a></li></ol></section>
+<div class="tags"><span>home cooking</span><span>recipe scaling</span><span>measurement conversions</span></div></article>
+<section class="more"><div class="wrap"><h2 class="sec-t">More from Home Cooking Basics</h2><div class="list"><a class="card" href="/best-by-use-by-sell-by-what-food-dates-mean/"><div class="cv"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g5441" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(6 73% 92%)"/><stop offset="1" stop-color="hsl(31 63% 80%)"/></linearGradient></defs><rect width="1200" height="675" fill="url(#g5441)"/><rect x="173" y="422" width="158" height="99" rx="17" fill="hsl(343 68% 56%)" opacity="0.16" transform="rotate(14 173 422)"/><rect x="324" y="195" width="350" height="219" rx="36" fill="hsl(354 68% 59%)" opacity="0.20" transform="rotate(-13 324 195)"/><rect x="71" y="262" width="194" height="121" rx="20" fill="hsl(348 68% 37%)" opacity="0.31" transform="rotate(9 71 262)"/><rect x="421" y="228" width="413" height="258" rx="43" fill="hsl(25 68% 44%)" opacity="0.32" transform="rotate(0 421 228)"/><rect x="165" y="300" width="321" height="201" rx="33" fill="hsl(17 68% 52%)" opacity="0.15" transform="rotate(-10 165 300)"/><rect x="1132" y="70" width="132" height="82" rx="14" fill="hsl(26 68% 38%)" opacity="0.28" transform="rotate(19 1132 70)"/><rect x="698" y="554" width="90" height="56" rx="9" fill="hsl(358 68% 62%)" opacity="0.16" transform="rotate(6 698 554)"/></svg></div><div><span class="tag">food safety</span><h3>Best By, Use By, Sell By, What Food Dates Actually Mean</h3><p>USDA and FDA explain which food date labels are about quality, which one is legally required, and how to decide whether food past its date is still good.</p><div class="meta">Oct 11, 2026 · 5 min read</div></div></a><a class="card" href="/how-to-wash-fruits-and-vegetables/"><div class="cv"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g2720" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(6 73% 92%)"/><stop offset="1" stop-color="hsl(31 63% 80%)"/></linearGradient></defs><rect width="1200" height="675" fill="url(#g2720)"/><circle cx="29" cy="28" r="185" fill="hsl(25 68% 56%)" opacity="0.23"/><circle cx="30" cy="328" r="243" fill="hsl(30 68% 43%)" opacity="0.27"/><circle cx="1090" cy="208" r="163" fill="hsl(29 68% 48%)" opacity="0.15"/><circle cx="357" cy="62" r="43" fill="hsl(349 68% 41%)" opacity="0.32"/><circle cx="794" cy="481" r="89" fill="hsl(16 68% 38%)" opacity="0.19"/><circle cx="620" cy="359" r="251" fill="hsl(352 68% 46%)" opacity="0.28"/><circle cx="247" cy="515" r="190" fill="hsl(355 68% 53%)" opacity="0.24"/></svg></div><div><span class="tag">food safety</span><h3>How to Wash Fruits and Vegetables the Right Way</h3><p>FDA's seven steps for cleaning fresh produce, why soap and produce washes are unnecessary, and why rinds you never eat still need a rinse.</p><div class="meta">Oct 11, 2026 · 4 min read</div></div></a><a class="card" href="/food-safety-how-long-leftovers-really-last/"><div class="cv"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g954" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(6 73% 92%)"/><stop offset="1" stop-color="hsl(31 63% 80%)"/></linearGradient></defs><rect width="1200" height="675" fill="url(#g954)"/><rect x="241" y="393" width="175" height="109" rx="18" fill="hsl(19 68% 41%)" opacity="0.12" transform="rotate(-16 241 393)"/><rect x="339" y="200" width="174" height="109" rx="18" fill="hsl(27 68% 61%)" opacity="0.32" transform="rotate(13 339 200)"/><rect x="1149" y="206" width="96" height="60" rx="10" fill="hsl(6 68% 50%)" opacity="0.23" transform="rotate(-17 1149 206)"/><rect x="949" y="441" width="144" height="90" rx="15" fill="hsl(17 68% 41%)" opacity="0.35" transform="rotate(-6 949 441)"/><rect x="981" y="512" width="110" height="69" rx="11" fill="hsl(354 68% 35%)" opacity="0.23" transform="rotate(4 981 512)"/><rect x="894" y="403" width="84" height="53" rx="9" fill="hsl(15 68% 45%)" opacity="0.13" transform="rotate(13 894 403)"/><rect x="1145" y="18" width="247" height="154" rx="26" fill="hsl(341 68% 57%)" opacity="0.26" transform="rotate(-4 1145 18)"/></svg></div><div><span class="tag">food safety</span><h3>Food Safety: How Long Leftovers Really Last</h3><p>USDA guidance on the two-hour rule, safe refrigeration windows, and reheating temperatures that actually keep leftovers safe to eat.</p><div class="meta">Oct 9, 2026 · 4 min read</div></div></a></div></div></section></main>
+<footer><div class="wrap"><div>&copy; 2026 Home Cooking Basics · A <a href="https://howlane.com/">Howlane</a> site</div><div><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/feed.xml">RSS</a></div></div></footer>
+</body></html>

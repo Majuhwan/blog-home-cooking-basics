@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://home-cooking-basics.howlane.com/sitemap.xml
